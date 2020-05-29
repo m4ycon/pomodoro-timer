@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ca5252;
+  font-size: 20px;
+}
+
+.title {
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 2em;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+section {
+  width: 100vw;
+}
+
+.container {
+  width: 100vw;
+  height: 300px;
+
+  background-color: #eee;
+  box-shadow: 0 0 10px #ddd;
+  box-sizing: border-box;
+
+  display: grid;
+  position: relative;
+  gap: 5px;
+
+  grid-template-columns: 90px 150px 90px;
+  grid-template-rows: repeat(2, 50px);
+
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  padding: 2%;
+  margin-top: 100px;
+}
+
+.clock {
+  font-size: 1.8em;
+}
+
+.container div {
+  text-align: center;
+}
+
+.ctrl-btn {
+  font-size: 1.1em;
+  border: 0;
+  background-color: transparent;
+}
+
+.ctrl-btn {
+  cursor: pointer;
+}
+
+.down-self {
+  align-self: flex-end;
+}
+
+.up-self {
+  align-self: flex-start;
+}
+
+h2, h3, .ctrl-btn, .clock {
+  text-align: center;
+}
+
+.next-prev-bold {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.config {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  color: #eee;
+
+  font-size: .95em;
+  border: 0;
+  border-radius: 50%;
+}
+
+.config:hover {
+  cursor: pointer;
+}
+
+.config:active {
+  transform: scale(.95);
+}
+
+@media (min-width: 361px) {
+  body {
+    font-size: 17px;
+  }
+
+  .container {
+    width: 360px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
