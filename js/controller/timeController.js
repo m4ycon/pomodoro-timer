@@ -1,16 +1,52 @@
 import formatTime from '../helper/formatTime.js';
+import stageView from '../view/stageView.js';
 
-const clock = document.querySelector('.clock');
+const clock = document.querySelector('#clock');
 
 const playBtn = document.querySelector('#play-btn');
 const resetBtn = document.querySelector('#reset-btn');
+const setTimeBtn = document.querySelector('#setTimeBtn');
 
 const playIcon = '<i class="fas fa-play"></i>';
 const pauseIcon = '<i class="fas fa-pause"></i>';
 
+
+// SETTINGS
+let workT = 25;
+let restT = 5;
+let longRestT = 15;
+
+// FIXED
 let runTime = false;
-let seconds = 1;
-let stage = 1; // 0: long-rest // 2,4,6:rest // 1,3,5,7:work
+let seconds = workT;
+let stage = 1; // even: rest // odd: work // 8: long-rest 
+
+// INICIALIZATION
+stageView(stage);
+clock.innerHTML = formatTime(seconds);
+
+function resetCycle() {
+  seconds = workT;
+  runTime = false;
+  stageView(stage);
+  stage = 1;
+  stageView(stage);
+  playBtn.innerHTML = playIcon;
+  clock.innerHTML = formatTime(seconds);
+}
+
+setTimeBtn.onclick = function() {
+  let workInput = document.querySelector('#workInput');
+  let restInput = document.querySelector('#restInput');
+  let lRestInput = document.querySelector('#lRestInput');
+  workT = workInput.value;
+  restT = restInput.value;
+  longRestT = lRestInput.value;
+  workInput.value = '';
+  restInput.value = '';
+  lRestInput.value = '';
+  resetCycle();
+}
 
 playBtn.onclick = () => {
   runTime = !runTime;
@@ -18,12 +54,7 @@ playBtn.onclick = () => {
   else playBtn.innerHTML = playIcon;
 }
 
-resetBtn.onclick = () => {
-  seconds = 25 * 60;
-  stage = 1;
-  runTime = true;
-  playBtn.innerHTML = pauseIcon;
-}
+resetBtn.onclick = resetCycle;
 
 setInterval(function () {
   if (runTime && seconds >= 0) {
@@ -32,19 +63,24 @@ setInterval(function () {
     clock.innerHTML = formatTime(seconds);
 
     if (seconds == 0) {
-      if (stage == 0) seconds = 15 * 60;
-      if (stage == 1 || stage == 3 || stage == 5) seconds = 25 * 60;
-      if (stage == 2 || stage == 4 || stage == 6) seconds = 5 * 60;
+      stageView(stage);
       if (stage == 7) {
-        seconds = 25 * 60 + 1;
-        stage = 0;
+        seconds = longRestT;
+        stage++;
+      } else if (stage == 8) {
+        seconds = workT;
+        stage = 1;
       } else {
-        seconds++;
+        if (stage % 2 != 0) seconds = restT
+        else seconds = workT;
         stage++;
       }
+      stageView(stage);
+      seconds++;
+
     }
 
   };
-}, 5);
+}, 100);
 
 export default {};

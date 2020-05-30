@@ -6,32 +6,69 @@
   <title>Pomodoro's timer</title>
 
   <script src="https://kit.fontawesome.com/3a5bea1600.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <h1 class="title">Pomodoro's timer</h1>
-  <section>
-    <div class="container">
-      <button class="config"><i class="fas fa-cog"></i></button>
+  <section class="container-fluid">
+    <div class="limit-box">
+      
+      <div class="stage-container">
+        <div class="row align-items-center">
 
-      <h2 class="down-self next-prev-bold">Previous</h2>
+          <div id="stage-1" class="stage-1 col d-flex justify-content-center">Work</div>
+          <div id="stage-3" class="stage-1 col d-flex justify-content-center">Work</div>
+          <div id="stage-5" class="stage-1 col d-flex justify-content-center">Work</div>
+          <div id="stage-7" class="stage-1 col d-flex justify-content-center">Work</div>
 
-      <div class="clock down-self">25:00</div>
+        </div>
+        <div class="row align-items-center">
 
-      <h2 class="down-self next-prev-bold">Next</h2>
+          <div id="stage-2" class="stage-1 col d-flex justify-content-center">Rest</div>
+          <div id="stage-4" class="stage-1 col d-flex justify-content-center">Rest</div>
+          <div id="stage-6" class="stage-1 col d-flex justify-content-center">Rest</div>
+          <div id="stage-8" class="stage-1 col d-flex justify-content-center">Long rest</div>
 
-      <h3 class="up-self">25m</h3>
-
-      <div class="up-self">
-        <button id="play-btn" class="ctrl-btn"><i class="fas fa-play"></i></button>
-        <button id="reset-btn" class="ctrl-btn"><i class="fas fa-sync-alt"></i></button>
+        </div>
       </div>
 
-      <h3 class="up-self">25m</h3>
+      <div class="clock-container row align-items-center">
+        <div class="col d-flex justify-content-center">
+          <div id="clock"></div>
+        </div>
+      </div>
+
+      <div class="btn-container row align-items-center">
+        <div class="col d-flex justify-content-center">
+          <button id="play-btn"><i class="fas fa-play"></i></button>
+          <button id="reset-btn"><i class="fas fa-sync-alt"></i></button>
+        </div>
+      </div>
+
+      <div class="config-container row align-items-center">
+        <div class="col d-flex justify-content-center">
+          
+          <form>
+            <div class="input-group mb-3">
+              <input id="workInput" type="text" class="form-control" placeholder="Work time" aria-label="Work time" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+              <input id="restInput" type="text" class="form-control" placeholder="Rest time" aria-label="Rest time" aria-describedby="basic-addon1">
+              <input id="lRestInput" type="text" class="form-control" placeholder="Long-rest time" aria-label="Long-rest time" aria-describedby="basic-addon1">
+            </div>
+            <button id="setTimeBtn" type="button" class="btn btn-danger">Save</button>
+          </form>
+
+        </div>
+      </div>
 
     </div>
   </section>
+
   <script type="module" src="./js/controller/timeController.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
