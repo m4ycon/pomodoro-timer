@@ -12,9 +12,9 @@ const pauseIcon = '<i class="fas fa-pause"></i>';
 
 
 // SETTINGS
-let workT = 25;
-let restT = 5;
-let longRestT = 15;
+let workT = 25 * 60;
+let restT = 5 * 60;
+let longRestT = 15 * 60;
 
 // FIXED
 let runTime = false;
@@ -35,17 +35,9 @@ function resetCycle() {
   clock.innerHTML = formatTime(seconds);
 }
 
-setTimeBtn.onclick = function() {
-  let workInput = document.querySelector('#workInput');
-  let restInput = document.querySelector('#restInput');
-  let lRestInput = document.querySelector('#lRestInput');
-  workT = workInput.value;
-  restT = restInput.value;
-  longRestT = lRestInput.value;
-  workInput.value = '';
-  restInput.value = '';
-  lRestInput.value = '';
-  resetCycle();
+function alarm() {
+  let alarm = new Audio('../../mp3/foghorn-daniel_simon.mp3');
+  alarm.play();
 }
 
 playBtn.onclick = () => {
@@ -55,6 +47,19 @@ playBtn.onclick = () => {
 }
 
 resetBtn.onclick = resetCycle;
+
+setTimeBtn.onclick = () => {
+  let workInput = document.querySelector('#workInput');
+  let restInput = document.querySelector('#restInput');
+  let lRestInput = document.querySelector('#lRestInput');
+  workT = Math.round(workInput.value.replace(/,/g, '.') * 60);
+  restT = Math.round(restInput.value.replace(/,/g, '.') * 60);
+  longRestT = Math.round(lRestInput.value.replace(/,/g, '.') * 60);
+  workInput.value = '';
+  restInput.value = '';
+  lRestInput.value = '';
+  resetCycle();
+}
 
 setInterval(function () {
   if (runTime && seconds >= 0) {
@@ -76,11 +81,12 @@ setInterval(function () {
         stage++;
       }
       stageView(stage);
+      alarm();
       seconds++;
 
     }
 
   };
-}, 100);
+}, 1000);
 
 export default {};
