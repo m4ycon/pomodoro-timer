@@ -41,7 +41,7 @@ function alarm() {
 }
 
 function isNumAndPositive(num) {
-  return !isNaN(num.replace(/,/g, '.')) && num > 0;
+  return !isNaN(num.replace(/,/g, '.')) && num.replace(/,/g, '.') > 0;
 }
 
 playBtn.onclick = () => {
