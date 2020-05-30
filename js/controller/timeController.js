@@ -40,6 +40,10 @@ function alarm() {
   alarm.play();
 }
 
+function isNumAndPositive(num) {
+  return !isNaN(num.replace(/,/g, '.')) && num > 0;
+}
+
 playBtn.onclick = () => {
   runTime = !runTime;
   if (runTime) playBtn.innerHTML = pauseIcon
@@ -52,13 +56,20 @@ setTimeBtn.onclick = () => {
   let workInput = document.querySelector('#workInput');
   let restInput = document.querySelector('#restInput');
   let lRestInput = document.querySelector('#lRestInput');
-  workT = Math.round(workInput.value.replace(/,/g, '.') * 60);
-  restT = Math.round(restInput.value.replace(/,/g, '.') * 60);
-  longRestT = Math.round(lRestInput.value.replace(/,/g, '.') * 60);
+
+  if (!isNumAndPositive(workInput.value) ||
+    !isNumAndPositive(restInput.value) ||
+    !isNumAndPositive(lRestInput.value)) {
+    alert('Invalid time, please try again.')
+  } else {
+    workT = Math.round(workInput.value.replace(/,/g, '.') * 60);
+    restT = Math.round(restInput.value.replace(/,/g, '.') * 60);
+    longRestT = Math.round(lRestInput.value.replace(/,/g, '.') * 60);
+    resetCycle();
+  }
   workInput.value = '';
   restInput.value = '';
   lRestInput.value = '';
-  resetCycle();
 }
 
 setInterval(function () {

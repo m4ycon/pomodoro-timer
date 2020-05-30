@@ -4,6 +4,6 @@ It was made using vanilla js, bootstrap and awesomefonts(icons).
 - [Click here for the Demo page](https://m4ycon.github.io/pomodoro-timer/)
 <p align="center">
   <a href="https://m4ycon.github.io/pomodoro-timer/">
-    <img src="https://github.com/m4ycon/pomodoro-timer/blob/master/pomodoro-print.png" width="400">
+    <img src="https://github.com/m4ycon/pomodoro-timer/blob/master/pomodoro-example.gif" width="400">
   </a>
 </p>
